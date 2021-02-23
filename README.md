@@ -1,6 +1,27 @@
-# Producten- en Dienstencatalogus (PDC) API OpenAPI Definition
+# Producten- en Dienstencatalogus (PDC) OpenAPI Definition
 
-## Working on your OpenAPI Definition
+Een open standaard om PDC-synchronisatie tussen applicaties mogelijk te maken Omdat hier geen standaard voor is vanuit VNG-Realisatie of het Zorginstituut hebben enkele leveranciers (Stipter, Solviteers Software) hier zelf het initiatief toe genomen.
+
+## Quick start
+
+[View Swagger UI docs online](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/open-sociaal-domein/koppeling-pdc/main/openapi-bundle.yaml)
+
+## Running in Docker
+
+* clone this repo
+* cd into this folder
+* run `docker-compose up` or `docker-compose up -d` if you want to run it in detached mode in the background
+* open the API-docs (depending on the developer preferences) by browsing to either of:
+  * http://localhost:8020 (Swagger-ui)
+  * http://localhost:8025 (Redoc)
+
+## Bundling a single openapi.yaml file
+
+Putting it all together is rather simple using https://github.com/Redocly/openapi-cli
+Install the OpenApi cli by following these instructions: https://redoc.ly/docs/cli/#installation-and-usage
+Run `openapi bundle --output openapi-bundle.yaml openapi/openapi.yaml`
+
+## Working locally on the OpenAPI Definition
 
 ### Install
 
@@ -248,3 +269,8 @@ You'll also notice `$ref`s to code samples.
 You can add languages by adding new folders at the appropriate path level.
 
 More details inside the `code_samples` folder README.
+
+## Tools
+
+* Repo created with https://github.com/Redocly/create-openapi-repo
+

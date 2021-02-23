@@ -4,6 +4,8 @@ get:
     - aanbieders
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
+  security:
+    - $ref: ../components/securitySchemes/bearerAuth.yaml
   responses:
     '200':
       description: Een collectie met aanbieders

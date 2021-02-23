@@ -1,0 +1,4 @@
+ApiKeyAuth:
+  type: apiKey
+  name: X-Api-Key
+  in: header

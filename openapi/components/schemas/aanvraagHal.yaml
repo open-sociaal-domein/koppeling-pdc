@@ -1,5 +1,0 @@
-allOf:
-  - $ref: ./aanvraag.yaml
-  - properties:
-      _links:
-        $ref: ./aanvraag_links.yaml

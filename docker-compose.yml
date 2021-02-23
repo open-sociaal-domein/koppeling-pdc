@@ -6,36 +6,27 @@ services:
     ports:
       - 8020:8080
     environment:
-      - SWAGGER_JSON=/oas3/api-specification.yml
+      - SWAGGER_JSON=/oas3/openapi.yaml
     volumes:
-      - ./:/oas3
-      - ./headers:/usr/share/nginx/html/headers
-      - ./parameters:/usr/share/nginx/html/parameters
-      - ./paths:/usr/share/nginx/html/paths
-      - ./responses:/usr/share/nginx/html/responses
-      - ./schemas:/usr/share/nginx/html/schemas
-      - ./security_schemes:/usr/share/nginx/html/security_schemes
+      - ./dist/:/oas3
 
   pdc-api-redoc:
     image: redocly/redoc
     ports:
       - 8025:80
     environment:
-      - SPEC_URL=api-specification.yml
+      - SPEC_URL=openapi.yaml
     volumes:
-      - ./api-specification.yml:/usr/share/nginx/html/api-specification.yml:ro
-      - ./headers:/usr/share/nginx/html/headers
-      - ./parameters:/usr/share/nginx/html/parameters
-      - ./paths:/usr/share/nginx/html/paths
-      - ./responses:/usr/share/nginx/html/responses
-      - ./schemas:/usr/share/nginx/html/schemas
-      - ./security_schemes:/usr/share/nginx/html/security_schemes
-
+      - ./dist/openapi.yaml:/usr/share/nginx/html/openapi.yaml:ro
 
   ### If preferred or needed, uncomment the lines below to start the Swagger-editor
   ### Beware, the editor does not load the api-spec by default, nor saves it.
   ### In case of changes you need to manually commit changes to the source files
-  swagger-editor:
-    image: swaggerapi/swagger-editor
-    ports:
-      - 8030:8080
+  # swagger-editor:
+  #   image: swaggerapi/swagger-editor
+  #   ports:
+  #     - 8030:8080
+  #   environment:
+  #     - SWAGGER_FILE=/tmp/openapi.yaml
+  #   volumes:
+  #     - ./dist:/tmp
