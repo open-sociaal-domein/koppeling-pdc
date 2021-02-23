@@ -1,0 +1,9 @@
+get:
+  summary: Geeft een product uit de PDC terug obv productId
+  tags:
+    - producten
+  parameters:
+    - $ref: ../components/parameters/gemeentecode.yaml
+  responses:
+    '200':
+      description: Een collectie met producten

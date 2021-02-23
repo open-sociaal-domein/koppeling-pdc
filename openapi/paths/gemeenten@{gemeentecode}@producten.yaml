@@ -1,0 +1,9 @@
+get:
+  summary: Geeft alle producten uit de PDC terug
+  tags:
+    - producten
+  parameters:
+    - $ref: ../components/parameters/gemeentecode.yaml
+  responses:
+    '200':
+      description: Een collectie met producten

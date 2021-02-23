@@ -1,0 +1,31 @@
+type: object
+description: Details toewijzing
+properties:
+  toewijzingNummer:
+    type: integer
+    format: int32
+  toewijzingsDatumTijd:
+    type: string
+    format: date-time
+  ingangsdatum:
+    type: string
+    format: date
+  einddatum:
+    type: string
+    format: date
+  leverancier:
+    $ref: ./leverancier.yaml
+  referentieAanbieder:
+    type: string
+    maxLength: 36
+  redenWijziging:
+    $ref: '#/components/schemas/redenWijziging'
+  leveringen:
+    type: array
+    items:
+      $ref: '#/components/schemas/levering'
+required:
+  - toewijzingNummer
+  - toewijzingsDatumTijd
+  - ingangsdatum
+  - leverancier

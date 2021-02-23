@@ -1,0 +1,59 @@
+get:
+  summary: Geeft de inhoud van de opgegeven codelijst terug
+  tags:
+    - codelijsten
+  description: >-
+    Het opvragen van een collectie van een bepaalde codelijst, bijvoorbeeld
+    productCategorie.
+  parameters:
+    - in: path
+      name: codelijst
+      required: true
+      schema:
+        type: string
+        enum:
+          - eenheid
+          - frequentie
+          - productCategorie
+          - regeling
+  security:
+    - BearerAuth: []
+  responses:
+    '200':
+      description: Een collectie van de gevraagde codelijst
+    '400':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400
+    '401':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/401
+    '403':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/403
+    '406':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/406
+    '409':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/409
+    '410':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/410
+    '415':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/415
+    '429':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/429
+    '500':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/500
+    '501':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/501
+    '503':
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/503
+    default:
+      $ref: >-
+        https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/default

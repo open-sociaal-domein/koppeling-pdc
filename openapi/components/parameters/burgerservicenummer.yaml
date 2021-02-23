@@ -1,0 +1,5 @@
+name: burgerservicenummer
+in: path
+required: true
+schema:
+  $ref: ../schemas/burgerservicenummer.yaml

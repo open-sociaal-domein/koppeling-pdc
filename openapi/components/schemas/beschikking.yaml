@@ -1,0 +1,18 @@
+type: object
+description: Omschrijving object
+properties:
+  beschikkingNummer:
+    type: integer
+    format: int32
+  datumAfgifte:
+    type: string
+    format: date
+  toelichting:
+    type: string
+  beschikteProducten:
+    type: array
+    items:
+      $ref: ./beschiktProduct.yaml
+required:
+  - beschikkingNummer
+  - datumAfgifte

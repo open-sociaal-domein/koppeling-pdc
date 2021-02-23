@@ -1,0 +1,9 @@
+get:
+  summary: Geeft alle aanbieders uit de PDC terug
+  tags:
+    - aanbieders
+  parameters:
+    - $ref: ../components/parameters/gemeentecode.yaml
+  responses:
+    '200':
+      description: Een collectie met aanbieders

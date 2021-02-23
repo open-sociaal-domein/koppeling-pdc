@@ -1,0 +1,4 @@
+API-version:
+  description: semver versioning
+  schema:
+    type: string

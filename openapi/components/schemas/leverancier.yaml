@@ -1,0 +1,16 @@
+type: object
+description: Omschrijving object
+properties:
+  identificatie:
+    $ref: ./identificatie.yaml
+  agbcode:
+    type: string
+    minLength: 8
+    maxLength: 8
+  kvk:
+    type: string
+  omschrijving:
+    type: string
+required:
+  - identificatie
+  - omschrijving

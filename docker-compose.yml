@@ -1,0 +1,41 @@
+# docker-compose.yml
+version: "3"
+services:
+  pdc-api-swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - 8020:8080
+    environment:
+      - SWAGGER_JSON=/oas3/api-specification.yml
+    volumes:
+      - ./:/oas3
+      - ./headers:/usr/share/nginx/html/headers
+      - ./parameters:/usr/share/nginx/html/parameters
+      - ./paths:/usr/share/nginx/html/paths
+      - ./responses:/usr/share/nginx/html/responses
+      - ./schemas:/usr/share/nginx/html/schemas
+      - ./security_schemes:/usr/share/nginx/html/security_schemes
+
+  pdc-api-redoc:
+    image: redocly/redoc
+    ports:
+      - 8025:80
+    environment:
+      - SPEC_URL=api-specification.yml
+    volumes:
+      - ./api-specification.yml:/usr/share/nginx/html/api-specification.yml:ro
+      - ./headers:/usr/share/nginx/html/headers
+      - ./parameters:/usr/share/nginx/html/parameters
+      - ./paths:/usr/share/nginx/html/paths
+      - ./responses:/usr/share/nginx/html/responses
+      - ./schemas:/usr/share/nginx/html/schemas
+      - ./security_schemes:/usr/share/nginx/html/security_schemes
+
+
+  ### If preferred or needed, uncomment the lines below to start the Swagger-editor
+  ### Beware, the editor does not load the api-spec by default, nor saves it.
+  ### In case of changes you need to manually commit changes to the source files
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    ports:
+      - 8030:8080

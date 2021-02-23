@@ -1,0 +1,29 @@
+type: object
+description: Details van een toegewezen product.
+properties:
+  datumIngangGeldigheid:
+    type: string
+    format: date
+  datumEindeGeldigheid:
+    type: string
+    format: date
+  omvang:
+    $ref: ./omvang.yaml
+  leveringsvorm:
+    type: string
+    enum:
+      - zin
+      - pgb
+  leverancier:
+    $ref: ./leverancier.yaml
+  toelichting:
+    type: string
+  toewijzingen:
+    type: array
+    items:
+      $ref: ./toewijzing.yaml
+required:
+  - identificatie
+  - product
+  - datumIngangGeldigheid
+  - omvang

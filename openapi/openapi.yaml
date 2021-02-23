@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: Producten- en Dienstencatalogus (PDC) API
+  description: >-
+    Een open standaard om PDC-synchronisatie tussen applicaties mogelijk te
+    maken Omdat hier geen standaard voor is vanuit VNG-Realisatie of het
+    Zorginstituut hebben enkele leveranciers (Stipter, Solviteers Software) hier
+    zelf het initiatief toe genomen.
+paths:
+  '/gemeenten/{gemeentecode}/producten':
+    $ref: 'paths/gemeenten@{gemeentecode}@producten.yaml'
+  '/gemeenten/{gemeentecode}/producten/{productId}':
+    $ref: 'paths/gemeenten@{gemeentecode}@producten@{productId}.yaml'
+  '/gemeenten/{gemeentecode}/aanbieders':
+    $ref: 'paths/gemeenten@{gemeentecode}@aanbieders.yaml'
+  '/gemeenten/{gemeentecode}/aanbieders/{aanbiederId}':
+    $ref: 'paths/gemeenten@{gemeentecode}@aanbieders@{aanbiederId}.yaml'
+  '/codelijsten/{codelijst}':
+    $ref: 'paths/codelijsten@{codelijst}.yaml'

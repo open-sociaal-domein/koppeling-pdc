@@ -1,0 +1,14 @@
+type: object
+description: Een product uit het productenboek
+properties:
+  identificatie:
+    $ref: ./identificatie.yaml
+  productCode:
+    type: string
+    minLength: 1
+    maxLength: 5
+  omschrijving:
+    type: string
+required:
+  - identificatie
+  - omschrijving
