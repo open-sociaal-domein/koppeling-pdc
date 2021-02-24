@@ -17,7 +17,7 @@ services:
     environment:
       - SPEC_URL=openapi.yaml
     volumes:
-      - ./dist/openapi.yaml:/usr/share/nginx/html/openapi.yaml:ro
+      - ./openapi-bundle.yaml:/usr/share/nginx/html/openapi.yaml:ro
 
   ### If preferred or needed, uncomment the lines below to start the Swagger-editor
   ### Beware, the editor does not load the api-spec by default, nor saves it.

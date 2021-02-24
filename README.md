@@ -6,7 +6,7 @@ Een open standaard om PDC-synchronisatie tussen applicaties mogelijk te maken Om
 
 [View Swagger UI docs online](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/open-sociaal-domein/koppeling-pdc/main/openapi-bundle.yaml)
 
-## Running in Docker
+## Getting started: View in Docker
 
 * clone this repo
 * cd into this folder
@@ -15,13 +15,13 @@ Een open standaard om PDC-synchronisatie tussen applicaties mogelijk te maken Om
   * http://localhost:8020 (Swagger-ui)
   * http://localhost:8025 (Redoc)
 
-## Bundling a single openapi.yaml file
+## How to: Bundling the openapi to a single openapi.yaml file
 
 Putting it all together is rather simple using https://github.com/Redocly/openapi-cli
 Install the OpenApi cli by following these instructions: https://redoc.ly/docs/cli/#installation-and-usage
 Run `openapi bundle --output openapi-bundle.yaml openapi/openapi.yaml`
 
-## Working locally on the OpenAPI Definition
+## How to: Working locally on the OpenAPI Definition
 
 ### Install
 
