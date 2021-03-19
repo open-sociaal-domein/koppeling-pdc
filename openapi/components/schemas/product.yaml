@@ -1,14 +1,36 @@
 type: object
-description: Een product uit het productenboek
+description: Een product uit de PDC
 properties:
+  _links:
+    $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/schemas/halCollectionLinks"
   identificatie:
     $ref: ./identificatie.yaml
-  productCode:
+  naam:
     type: string
-    minLength: 1
-    maxLength: 5
-  omschrijving:
+  typeWet:
+    $ref: ./typeWet.yaml
+  status:
     type: string
+    description: de status binnen de PDC, bepaalt of en wanneer gebruik is toegestaan
+    enum:
+      - gepland
+  beginGeldigheid:
+    type: string
+    format: date
+  eindeGeldigheid:
+    type: string
+    format: date
+  vereistFiattering:
+    type: string
+    format: boolean
+  typeFiattering:
+    type: string
+    description: af te spreken bij implementatie. Bijvoorbeeld collega, backoffice, manager
+  toewijzingsvariant:
+    oneOf:
+      - $ref: ./toewijzingSpecifiek.yaml
+      - $ref: ./toewijzingAspecifiek.yaml
+      - $ref: ./toewijzingGeneriek.yaml
 required:
   - identificatie
   - omschrijving

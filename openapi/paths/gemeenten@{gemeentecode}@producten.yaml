@@ -1,9 +1,31 @@
 get:
-  summary: Geeft alle producten uit de PDC terug
+  summary: Alle producten
   tags:
     - producten
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
+    - $ref: ../components/parameters/peildatum.yaml
+  security:
+    - $ref: ../components/securitySchemes/bearerAuth.yaml
   responses:
     '200':
-      description: Een collectie met producten
+      description: Geeft een collectie met alle producten uit de PDC terug
+      content:
+        application/hal+json:
+          schema:
+            $ref: ../components/schemas/productHalCollectie.yaml
+    '400':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
+    '401':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/401"
+    '403':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/403"
+    '500':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/500"
+    '501':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/501"
+    '503':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/503"
+    'default':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/default"
+

@@ -1,0 +1,22 @@
+type: object
+description: Een aanbieder die één of meerdere producten uit de PDC mag leveren
+properties:
+  _links:
+    $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/schemas/halCollectionLinks"
+  agbCode:
+    type: string
+    minLength: 1
+    maxLength: 5
+  naam:
+    type: string
+  kvkNummer:
+    type: string
+    minLength: 8
+    maxLength: 8
+  vestigingsnummer:
+    type: string
+    minLength: 12
+    maxLength: 12
+required:
+  - agbCode
+  - naam

@@ -1,0 +1,18 @@
+type: object
+description: Toewijzingsvariant aspecifiek met en zonder budget
+properties:
+  productCategorie:
+    $ref: ./productCategorie.yaml
+  einddatumVerplicht:
+    type: string
+    format: boolean
+    default: true
+  budgetVerplicht:
+    type: string
+    description: bepaalt of de toewijzingsvariant aspecifiek met of zonder budget is
+    format: boolean
+    default: false
+required:
+  - productCategorie
+  - einddatumVerplicht
+  - budgetVerplicht

@@ -1,9 +1,32 @@
 get:
-  summary: Geeft een aanbieder uit de PDC terug obv aanbiederId
+  summary: Aanbieder by aanbiederId
   tags:
     - aanbieders
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
+    - $ref: ../components/parameters/peildatum.yaml
+  security:
+    - $ref: ../components/securitySchemes/bearerAuth.yaml
   responses:
     '200':
-      description: Een collectie met aanbieders
+      description: Geeft een collectie terug van de aanbiederdetails by aanbiederId
+      content:
+        application/hal+json:
+          schema:
+            $ref: ../components/schemas/AanbiederHal.yaml
+    '400':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
+    '401':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/401"
+    '403':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/403"
+    '500':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/500"
+    '501':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/501"
+    '503':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/503"
+    'default':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/default"
+
+

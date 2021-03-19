@@ -1,0 +1,8 @@
+allOf:
+  - $ref: './product.yaml'
+  - properties:
+      _links:
+        type: object
+        properties:
+          self:
+            $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/schemas/halLink"

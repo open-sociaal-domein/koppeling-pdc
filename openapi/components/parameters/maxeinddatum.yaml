@@ -1,8 +1,0 @@
-name: maxeinddatum
-in: query
-schema:
-  type: string
-  format: date
-description: >-
-  Toegewezen producten mogen geen einddatum hebben ouder dan deze datum.
-  Verwijst naar ToegewezenProduct.Einddatum

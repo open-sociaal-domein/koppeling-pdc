@@ -1,0 +1,9 @@
+type: object
+description: Toewijzingsvariant generiek
+properties:
+  einddatumVerplicht:
+    type: string
+    format: boolean
+    default: true
+required:
+  - einddatumVerplicht

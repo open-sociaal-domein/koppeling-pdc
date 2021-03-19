@@ -1,0 +1,25 @@
+type: object
+description: Toewijzingsvariant specifiek
+properties:
+  productCategorie:
+    $ref: ./productCategorie.yaml
+  productCode:
+    $ref: ./productCode.yaml
+  eenheid:
+    type: array
+    items:
+      $ref: ./eenheid.yaml
+  frequentie:
+    type: array
+    items:
+      $ref: ./frequentie.yaml
+  einddatumVerplicht:
+    type: string
+    format: boolean
+    default: true
+required:
+  - productCategorie
+  - productCode
+  - eenheid
+  - frequentie
+  - einddatumVerplicht
