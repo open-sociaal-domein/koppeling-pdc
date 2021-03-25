@@ -9,11 +9,13 @@ get:
     - $ref: ../components/securitySchemes/bearerAuth.yaml
   responses:
     '200':
-      description: Geeft een collectie met alle aanbieders bij een product obv productId terug
+      description: Collectie met alle aanbieders bij een product obv productId
       content:
         application/hal+json:
           schema:
-            $ref: ../components/schemas/AanbiederHalCollectie.yaml
+            allOf:
+              - $ref: ../components/schemas/aanbiederHal.yaml
+              - $ref: ../components/schemas/prijsrecords.yaml
     '400':
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
     '401':

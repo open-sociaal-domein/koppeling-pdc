@@ -9,7 +9,7 @@ get:
     - $ref: ../components/securitySchemes/bearerAuth.yaml
   responses:
     '200':
-      description: Geeft een collectie met alle producten uit de PDC terug
+      description: Collectie met alle producten uit de PDC
       content:
         application/hal+json:
           schema:

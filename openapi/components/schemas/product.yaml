@@ -4,16 +4,11 @@ properties:
   _links:
     $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/schemas/halCollectionLinks"
   identificatie:
-    $ref: ./identificatie.yaml
+    type: string
   naam:
     type: string
   typeWet:
     $ref: ./typeWet.yaml
-  status:
-    type: string
-    description: de status binnen de PDC, bepaalt of en wanneer gebruik is toegestaan
-    enum:
-      - gepland
   beginGeldigheid:
     type: string
     format: date
@@ -23,9 +18,10 @@ properties:
   vereistFiattering:
     type: string
     format: boolean
+    default: false
   typeFiattering:
-    type: string
-    description: af te spreken bij implementatie. Bijvoorbeeld collega, backoffice, manager
+    type: array
+    description: Rollen die vereist zijn voor fiattering. Bijvoorbeeld collega, backoffice, manager
   toewijzingsvariant:
     oneOf:
       - $ref: ./toewijzingSpecifiek.yaml
@@ -34,3 +30,4 @@ properties:
 required:
   - identificatie
   - omschrijving
+  - vereistFiattering

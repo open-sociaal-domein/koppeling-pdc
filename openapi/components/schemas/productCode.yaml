@@ -2,3 +2,4 @@ type: string
 description: De productcode in het iWmo- en iJw-berichtenverkeer.
 minLength: 1
 maxLength: 5
+example: '01A00'

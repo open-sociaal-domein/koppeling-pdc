@@ -25,7 +25,7 @@ paths:
             scheme: bearer
       responses:
         '200':
-          description: Geeft een collectie met alle producten uit de PDC terug
+          description: Collectie met alle producten uit de PDC
           content:
             application/hal+json:
               schema:
@@ -58,7 +58,7 @@ paths:
             scheme: bearer
       responses:
         '200':
-          description: Geeft een collectie met productdetails obv een productId
+          description: Collectie met productdetails obv een productId
           content:
             application/hal+json:
               schema:
@@ -91,13 +91,13 @@ paths:
             scheme: bearer
       responses:
         '200':
-          description: >-
-            Geeft een collectie met alle aanbieders bij een product obv
-            productId terug
+          description: Collectie met alle aanbieders bij een product obv productId
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/AanbiederHalCollectie'
+                allOf:
+                  - $ref: '#/components/schemas/aanbiederHal'
+                  - $ref: '#/components/schemas/prijsrecords'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -126,11 +126,11 @@ paths:
             scheme: bearer
       responses:
         '200':
-          description: Geeft een collectie met alle aanbieders uit de PDC terug
+          description: Collectie met alle aanbieders uit de PDC
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/AanbiederHalCollectie'
+                $ref: '#/components/schemas/aanbiederHalCollectie'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -145,9 +145,9 @@ paths:
           $ref: '#/components/responses/503'
         default:
           $ref: '#/components/responses/default'
-  '/gemeenten/{gemeentecode}/aanbieders/{aanbiederId}':
+  '/gemeenten/{gemeentecode}/aanbieders/{agbCode}':
     get:
-      summary: Aanbieder by aanbiederId
+      summary: Aanbieder by agbCode
       tags:
         - aanbieders
       parameters:
@@ -159,49 +159,18 @@ paths:
             scheme: bearer
       responses:
         '200':
-          description: Geeft een collectie terug van de aanbiederdetails by aanbiederId
+          description: Collectie van de aanbiederdetails by agbCode
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/AanbiederHal'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
-        '500':
-          $ref: '#/components/responses/500'
-        '501':
-          $ref: '#/components/responses/501'
-        '503':
-          $ref: '#/components/responses/503'
-        default:
-          $ref: '#/components/responses/default'
-  '/codelijsten/{codelijst}':
-    get:
-      summary: Codelijst by id
-      tags:
-        - codelijsten
-      description: >-
-        Het opvragen van een collectie van een bepaalde codelijst, bijvoorbeeld
-        productCategorie.
-      parameters:
-        - in: path
-          name: codelijst
-          required: true
-          schema:
-            type: string
-            enum:
-              - eenheid
-              - frequentie
-              - productCategorie
-              - regeling
-      security:
-        - BearerAuth: []
-      responses:
-        '200':
-          description: Een collectie van de gevraagde codelijst
+                allOf:
+                  - $ref: '#/components/schemas/aanbiederHal'
+                  - type: object
+                    properties:
+                      producten:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/productLinks'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -275,57 +244,45 @@ components:
       properties:
         self:
           $ref: '#/components/schemas/halLink'
-    identificatie:
-      type: string
     typeWet:
       type: string
       enum:
         - wmo
         - jeugdwet
     productCategorie:
-      type: object
-      description: Omschrijving object
-      properties:
-        code:
-          type: string
-          minLength: 2
-          maxLength: 2
-        omschrijving:
-          type: string
-      required:
-        - code
-        - omschrijving
+      type: string
+      description: Valide waarde uit iStandaarden codelijst WMO020 of JZ020
+      minLength: 2
+      maxLength: 2
+      example: '02'
     productCode:
       type: string
       description: De productcode in het iWmo- en iJw-berichtenverkeer.
       minLength: 1
       maxLength: 5
+      example: 01A00
     eenheid:
-      type: object
-      description: Omschrijving object
-      properties:
-        code:
-          type: string
-          minLength: 2
-          maxLength: 2
-        omschrijving:
-          type: string
-      required:
-        - code
-        - omschrijving
+      type: string
+      minLength: 2
+      maxLength: 2
+      description: Valide waarde uit iStandaarden codelijst WJ756
+      example: '04'
+    eenheidArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/eenheid'
+      description: Valide waarde uit iStandaarden codelijst WJ756
     frequentie:
-      type: object
-      description: Omschrijving object
-      properties:
-        code:
-          type: string
-          minLength: 1
-          maxLength: 1
-        omschrijving:
-          type: string
-      required:
-        - code
-        - omschrijving
+      type: string
+      minLength: 1
+      maxLength: 1
+      description: Valide waarde uit iStandaarden codelijst WMO757
+      example: '1'
+    frequentieArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/frequentie'
+      description: Valide waarde uit iStandaarden codelijst WMO757
     toewijzingSpecifiek:
       type: object
       description: Toewijzingsvariant specifiek
@@ -335,13 +292,9 @@ components:
         productCode:
           $ref: '#/components/schemas/productCode'
         eenheid:
-          type: array
-          items:
-            $ref: '#/components/schemas/eenheid'
+          $ref: '#/components/schemas/eenheidArray'
         frequentie:
-          type: array
-          items:
-            $ref: '#/components/schemas/frequentie'
+          $ref: '#/components/schemas/frequentieArray'
         einddatumVerplicht:
           type: string
           format: boolean
@@ -388,16 +341,11 @@ components:
         _links:
           $ref: '#/components/schemas/halCollectionLinks'
         identificatie:
-          $ref: '#/components/schemas/identificatie'
+          type: string
         naam:
           type: string
         typeWet:
           $ref: '#/components/schemas/typeWet'
-        status:
-          type: string
-          description: 'de status binnen de PDC, bepaalt of en wanneer gebruik is toegestaan'
-          enum:
-            - gepland
         beginGeldigheid:
           type: string
           format: date
@@ -407,11 +355,12 @@ components:
         vereistFiattering:
           type: string
           format: boolean
+          default: false
         typeFiattering:
-          type: string
+          type: array
           description: >-
-            af te spreken bij implementatie. Bijvoorbeeld collega, backoffice,
-            manager
+            Rollen die vereist zijn voor fiattering. Bijvoorbeeld collega,
+            backoffice, manager
         toewijzingsvariant:
           oneOf:
             - $ref: '#/components/schemas/toewijzingSpecifiek'
@@ -420,6 +369,7 @@ components:
       required:
         - identificatie
         - omschrijving
+        - vereistFiattering
     ProductHal:
       allOf:
         - $ref: '#/components/schemas/product'
@@ -483,6 +433,12 @@ components:
               properties:
                 self:
                   $ref: '#/components/schemas/halLink'
+    agbCode:
+      type: string
+      minLength: 8
+      maxLength: 8
+      description: Een geldige agb-code
+      example: '20000001'
     aanbieder:
       type: object
       description: Een aanbieder die één of meerdere producten uit de PDC mag leveren
@@ -490,23 +446,23 @@ components:
         _links:
           $ref: '#/components/schemas/halCollectionLinks'
         agbCode:
-          type: string
-          minLength: 1
-          maxLength: 5
+          $ref: '#/components/schemas/agbCode'
         naam:
           type: string
         kvkNummer:
           type: string
           minLength: 8
           maxLength: 8
+          example: '62633716'
         vestigingsnummer:
           type: string
           minLength: 12
           maxLength: 12
+          example: '000031624103'
       required:
         - agbCode
         - naam
-    AanbiederHal:
+    aanbiederHal:
       allOf:
         - $ref: '#/components/schemas/aanbieder'
         - properties:
@@ -515,7 +471,36 @@ components:
               properties:
                 self:
                   $ref: '#/components/schemas/halLink'
-    AanbiederHalCollectie:
+    prijsrecord:
+      type: object
+      description: Actieve prijs in periode
+      properties:
+        beginGeldigheid:
+          type: string
+          format: date
+        eindeGeldigheid:
+          type: string
+          format: date
+        indicatieActievePrijs:
+          type: string
+          description: Actieve prijs op basis van de parameter peildatum
+          format: boolean
+          default: false
+        prijs:
+          type: number
+          description: prijs in centen
+      required:
+        - prijs
+        - beginGeldigheid
+        - indicatieActievePrijs
+    prijsrecords:
+      type: object
+      properties:
+        prijsrecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/prijsrecord'
+    aanbiederHalCollectie:
       type: object
       properties:
         _links:
@@ -526,7 +511,21 @@ components:
             aanbieders:
               type: array
               items:
-                $ref: '#/components/schemas/AanbiederHal'
+                $ref: '#/components/schemas/aanbiederHal'
+    productLinks:
+      type: object
+      description: Object met product link
+      properties:
+        productId:
+          type: string
+          description: primary key van product
+        href:
+          type: string
+          format: uri
+          description: link to resource
+      required:
+        - productId
+        - href
   parameters:
     gemeentecode:
       in: path

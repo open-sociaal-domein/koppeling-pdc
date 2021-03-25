@@ -6,13 +6,9 @@ properties:
   productCode:
     $ref: ./productCode.yaml
   eenheid:
-    type: array
-    items:
-      $ref: ./eenheid.yaml
+    $ref: ./eenheidArray.yaml
   frequentie:
-    type: array
-    items:
-      $ref: ./frequentie.yaml
+    $ref: ./frequentieArray.yaml
   einddatumVerplicht:
     type: string
     format: boolean

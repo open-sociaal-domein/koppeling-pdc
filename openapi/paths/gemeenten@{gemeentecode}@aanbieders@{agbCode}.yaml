@@ -1,26 +1,26 @@
 get:
-  summary: Codelijst by id
+  summary: Aanbieder by agbCode
   tags:
-    - codelijsten
-  description: >-
-    Het opvragen van een collectie van een bepaalde codelijst, bijvoorbeeld
-    productCategorie.
+    - aanbieders
   parameters:
-    - in: path
-      name: codelijst
-      required: true
-      schema:
-        type: string
-        enum:
-          - eenheid
-          - frequentie
-          - productCategorie
-          - regeling
+    - $ref: ../components/parameters/gemeentecode.yaml
+    - $ref: ../components/parameters/peildatum.yaml
   security:
-    - BearerAuth: []
+    - $ref: ../components/securitySchemes/bearerAuth.yaml
   responses:
     '200':
-      description: Een collectie van de gevraagde codelijst
+      description: Collectie van de aanbiederdetails by agbCode
+      content:
+        application/hal+json:
+          schema:
+            allOf:
+              - $ref: ../components/schemas/aanbiederHal.yaml
+              - type: object
+                properties:
+                  producten:
+                    type: array
+                    items:
+                      $ref: ../components/schemas/productLinks.yaml
     '400':
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
     '401':
@@ -35,3 +35,5 @@ get:
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/503"
     'default':
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/default"
+
+

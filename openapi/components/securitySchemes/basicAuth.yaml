@@ -1,3 +1,0 @@
-BasicAuth:
-  type: http
-  scheme: basic

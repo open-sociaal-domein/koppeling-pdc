@@ -9,7 +9,7 @@ get:
     - $ref: ../components/securitySchemes/bearerAuth.yaml
   responses:
     '200':
-      description: Geeft een collectie met productdetails obv een productId
+      description: Collectie met productdetails obv een productId
       content:
         application/hal+json:
           schema:

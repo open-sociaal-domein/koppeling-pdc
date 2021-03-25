@@ -1,4 +1,0 @@
-name: regeling
-in: query
-schema:
-  type: string

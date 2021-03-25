@@ -8,4 +8,4 @@ properties:
       aanbieders:
         type: array
         items:
-          $ref: './AanbiederHal.yaml'
+          $ref: './aanbiederHal.yaml'

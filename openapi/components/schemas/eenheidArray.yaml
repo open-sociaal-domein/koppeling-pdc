@@ -1,5 +1,4 @@
-type: string
-minLength: 2
-maxLength: 2
+type: array
+items:
+  $ref: ./eenheid.yaml
 description: Valide waarde uit iStandaarden codelijst WJ756
-example: '04'

@@ -1,0 +1,6 @@
+type: object
+properties:
+  prijsrecords:
+    type: array
+    items:
+      $ref: './prijsrecord.yaml'

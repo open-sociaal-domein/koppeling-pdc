@@ -1,0 +1,21 @@
+type: object
+description: Actieve prijs in periode
+properties:
+  beginGeldigheid:
+    type: string
+    format: date
+  eindeGeldigheid:
+    type: string
+    format: date
+  indicatieActievePrijs:
+    type: string
+    description: Actieve prijs op basis van de parameter peildatum
+    format: boolean
+    default: false
+  prijs:
+    type: number
+    description: prijs in centen
+required:
+  - prijs
+  - beginGeldigheid
+  - indicatieActievePrijs
