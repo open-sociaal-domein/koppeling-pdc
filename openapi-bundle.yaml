@@ -19,10 +19,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/peildatum'
-      security:
-        - BearerAuth:
-            type: http
-            scheme: bearer
       responses:
         '200':
           description: Collectie met alle producten uit de PDC
@@ -52,10 +48,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/peildatum'
-      security:
-        - BearerAuth:
-            type: http
-            scheme: bearer
       responses:
         '200':
           description: Collectie met productdetails obv een productId
@@ -85,10 +77,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/peildatum'
-      security:
-        - BearerAuth:
-            type: http
-            scheme: bearer
       responses:
         '200':
           description: Collectie met alle aanbieders bij een product obv productId
@@ -120,10 +108,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/peildatum'
-      security:
-        - BearerAuth:
-            type: http
-            scheme: bearer
       responses:
         '200':
           description: Collectie met alle aanbieders uit de PDC
@@ -153,10 +137,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/peildatum'
-      security:
-        - BearerAuth:
-            type: http
-            scheme: bearer
       responses:
         '200':
           description: Collectie van de aanbiederdetails by agbCode
@@ -186,6 +166,11 @@ paths:
         default:
           $ref: '#/components/responses/default'
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     gemeentecode:
       type: string
@@ -692,3 +677,5 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/foutbericht'
+security:
+  - bearerAuth: []

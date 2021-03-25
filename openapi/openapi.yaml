@@ -21,3 +21,10 @@ paths:
     $ref: 'paths/gemeenten@{gemeentecode}@aanbieders.yaml'
   '/gemeenten/{gemeentecode}/aanbieders/{agbCode}':
     $ref: 'paths/gemeenten@{gemeentecode}@aanbieders@{agbCode}.yaml'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      $ref: ./components/securitySchemes/bearerAuth.yaml
+
+security:
+  - bearerAuth: []

@@ -5,8 +5,6 @@ get:
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
     - $ref: ../components/parameters/peildatum.yaml
-  security:
-    - $ref: ../components/securitySchemes/bearerAuth.yaml
   responses:
     '200':
       description: Collectie met alle aanbieders bij een product obv productId
