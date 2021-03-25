@@ -21,6 +21,8 @@ properties:
     default: false
   typeFiattering:
     type: array
+    items:
+      type: string
     description: Rollen die vereist zijn voor fiattering. Bijvoorbeeld collega, backoffice, manager
   toewijzingsvariant:
     oneOf:
