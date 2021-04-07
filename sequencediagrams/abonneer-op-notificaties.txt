@@ -1,0 +1,17 @@
+title Abonneer op PDC notificaties
+
+Participant FrontOffice as WIZ
+Participant MO-Platform as PDC
+participant AGB-Register as AGB
+
+note right of WIZ
+Subscribe to notifications
+end note
+
+opt get channels
+WIZ -> PDC: Get available channels
+else get subsribed channels
+WIZ -> PDC: Get available channels
+end alt
+WIZ -> WIZ: User triggers channels to subscribe toactivate WIZ
+WIZ -> PDC: Subscribe to available channels

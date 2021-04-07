@@ -1,13 +1,15 @@
 get:
-  summary: Alle aanbieders van product by productId
+  summary: Aanbiederdetails by agbCode van een product
   tags:
     - producten
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
+    - $ref: ../components/parameters/productIdentificatie.yaml
+    - $ref: ../components/parameters/agbCode.yaml
     - $ref: ../components/parameters/peildatum.yaml
   responses:
     '200':
-      description: Collectie met alle aanbieders bij een product obv productId
+      description: Aanbiederdetails voor een product
       content:
         application/hal+json:
           schema:

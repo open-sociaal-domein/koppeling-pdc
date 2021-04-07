@@ -1,0 +1,4 @@
+type: object
+properties:
+  actievePrijs:
+    $ref: './actiefPrijsrecord.yaml'

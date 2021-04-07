@@ -13,8 +13,7 @@ properties:
     format: boolean
     default: false
   prijs:
-    type: number
-    description: prijs in centen
+    $ref: ./prijs.yaml
 required:
   - prijs
   - beginGeldigheid

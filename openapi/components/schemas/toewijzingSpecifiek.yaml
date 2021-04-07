@@ -11,6 +11,7 @@ properties:
     $ref: ./frequentieArray.yaml
   einddatumVerplicht:
     type: string
+    description: Moet de einddatum toewijzing verplicht gevuld worden bij een toewijzing?
     format: boolean
     default: true
 required:

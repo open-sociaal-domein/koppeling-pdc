@@ -1,0 +1,6 @@
+name: financieringsvorm
+in: query
+description: >-
+  Filter de producten op basis van financieringsvorm
+schema:
+  $ref: ../schemas/financieringsvorm.yaml

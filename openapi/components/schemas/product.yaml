@@ -9,6 +9,10 @@ properties:
     type: string
   typeWet:
     $ref: ./typeWet.yaml
+  uitvoeringsvariant:
+    $ref: ./uitvoeringsvariant.yaml
+  financieringsvorm:
+    $ref: ./financieringsvorm.yaml
   beginGeldigheid:
     type: string
     format: date

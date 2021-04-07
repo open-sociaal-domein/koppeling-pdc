@@ -19,6 +19,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/peildatum'
+        - $ref: '#/components/parameters/typeWet'
+        - $ref: '#/components/parameters/financieringsvorm'
       responses:
         '200':
           description: Collectie met alle producten uit de PDC
@@ -40,17 +42,18 @@ paths:
           $ref: '#/components/responses/503'
         default:
           $ref: '#/components/responses/default'
-  '/gemeenten/{gemeentecode}/producten/{productId}':
+  '/gemeenten/{gemeentecode}/producten/{identificatie}':
     get:
-      summary: Product by productId
+      summary: Product by identificatie
       tags:
         - producten
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
+        - $ref: '#/components/parameters/productIdentificatie'
         - $ref: '#/components/parameters/peildatum'
       responses:
         '200':
-          description: Collectie met productdetails obv een productId
+          description: Collectie met productdetails obv een identificatie
           content:
             application/hal+json:
               schema:
@@ -69,17 +72,51 @@ paths:
           $ref: '#/components/responses/503'
         default:
           $ref: '#/components/responses/default'
-  '/gemeenten/{gemeentecode}/producten/{productId}/aanbieders':
+  '/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders':
     get:
-      summary: Alle aanbieders van product by productId
+      summary: Alle aanbieders van product by identificatie
       tags:
         - producten
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
+        - $ref: '#/components/parameters/productIdentificatie'
         - $ref: '#/components/parameters/peildatum'
       responses:
         '200':
-          description: Collectie met alle aanbieders bij een product obv productId
+          description: Collectie met alle aanbieders bij een product obv identificatie
+          content:
+            application/hal+json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/aanbiederHal'
+                  - $ref: '#/components/schemas/actiefPrijsrecordArray'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '500':
+          $ref: '#/components/responses/500'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
+        default:
+          $ref: '#/components/responses/default'
+  '/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders{agbCode}':
+    get:
+      summary: Aanbiederdetails by agbCode van een product
+      tags:
+        - producten
+      parameters:
+        - $ref: '#/components/parameters/gemeentecode'
+        - $ref: '#/components/parameters/productIdentificatie'
+        - $ref: '#/components/parameters/agbCode'
+        - $ref: '#/components/parameters/peildatum'
+      responses:
+        '200':
+          description: Aanbiederdetails voor een product
           content:
             application/hal+json:
               schema:
@@ -136,6 +173,7 @@ paths:
         - aanbieders
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
+        - $ref: '#/components/parameters/agbCode'
         - $ref: '#/components/parameters/peildatum'
       responses:
         '200':
@@ -180,6 +218,17 @@ components:
       maxLength: 4
       minLength: 4
       example: '0216'
+    typeWet:
+      type: string
+      enum:
+        - wmo
+        - jeugdwet
+    financieringsvorm:
+      type: string
+      description: Wijze waarop de zorg gefinancierd wordt
+      enum:
+        - zin
+        - pgb
     foutbericht:
       type: object
       description: >-
@@ -229,11 +278,15 @@ components:
       properties:
         self:
           $ref: '#/components/schemas/halLink'
-    typeWet:
+    uitvoeringsvariant:
       type: string
+      description: >-
+        varianten door het Zorginstituut Nederland beschreven in het document
+        ‘Handreiking Uitvoeringsvarianten iWmo en iJw’
       enum:
-        - wmo
-        - jeugdwet
+        - inspanningsgericht
+        - outputgericht
+        - taakgericht
     productCategorie:
       type: string
       description: Valide waarde uit iStandaarden codelijst WMO020 of JZ020
@@ -282,6 +335,9 @@ components:
           $ref: '#/components/schemas/frequentieArray'
         einddatumVerplicht:
           type: string
+          description: >-
+            Moet de einddatum toewijzing verplicht gevuld worden bij een
+            toewijzing?
           format: boolean
           default: true
       required:
@@ -331,6 +387,10 @@ components:
           type: string
         typeWet:
           $ref: '#/components/schemas/typeWet'
+        uitvoeringsvariant:
+          $ref: '#/components/schemas/uitvoeringsvariant'
+        financieringsvorm:
+          $ref: '#/components/schemas/financieringsvorm'
         beginGeldigheid:
           type: string
           format: date
@@ -458,6 +518,29 @@ components:
               properties:
                 self:
                   $ref: '#/components/schemas/halLink'
+    prijs:
+      type: number
+      description: prijs in centen
+    actiefPrijsrecord:
+      type: object
+      description: Actieve prijs
+      properties:
+        beginGeldigheid:
+          type: string
+          format: date
+        eindeGeldigheid:
+          type: string
+          format: date
+        prijs:
+          $ref: '#/components/schemas/prijs'
+      required:
+        - prijs
+        - beginGeldigheid
+    actiefPrijsrecordArray:
+      type: object
+      properties:
+        actievePrijs:
+          $ref: '#/components/schemas/actiefPrijsrecord'
     prijsrecord:
       type: object
       description: Actieve prijs in periode
@@ -474,8 +557,7 @@ components:
           format: boolean
           default: false
         prijs:
-          type: number
-          description: prijs in centen
+          $ref: '#/components/schemas/prijs'
       required:
         - prijs
         - beginGeldigheid
@@ -527,7 +609,35 @@ components:
       schema:
         type: string
         format: date
-      description: Datum waarop de producten actief moeten zijn.
+      description: >-
+        Datum waarop de producten actief moeten zijn. Indien datum ontbreekt
+        geldt de timestamp van de bevraging.
+    typeWet:
+      name: typeWet
+      in: query
+      description: Filter de producten op basis van type wet
+      schema:
+        $ref: '#/components/schemas/typeWet'
+    financieringsvorm:
+      name: financieringsvorm
+      in: query
+      description: Filter de producten op basis van financieringsvorm
+      schema:
+        $ref: '#/components/schemas/financieringsvorm'
+    productIdentificatie:
+      in: path
+      name: identificatie
+      description: unieke sleutel van het product
+      required: true
+      schema:
+        type: string
+    agbCode:
+      in: path
+      name: agbCode
+      description: AGB-code zoals te vinden in het Vektis AGB-register
+      required: true
+      schema:
+        $ref: '#/components/schemas/agbCode'
   headers:
     api_version:
       schema:

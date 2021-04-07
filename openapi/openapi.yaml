@@ -13,10 +13,12 @@ info:
 paths:
   '/gemeenten/{gemeentecode}/producten':
     $ref: 'paths/gemeenten@{gemeentecode}@producten.yaml'
-  '/gemeenten/{gemeentecode}/producten/{productId}':
-    $ref: 'paths/gemeenten@{gemeentecode}@producten@{productId}.yaml'
-  '/gemeenten/{gemeentecode}/producten/{productId}/aanbieders':
-    $ref: 'paths/gemeenten@{gemeentecode}@producten@{productId}@aanbieders.yaml'
+  '/gemeenten/{gemeentecode}/producten/{identificatie}':
+    $ref: 'paths/gemeenten@{gemeentecode}@producten@{identificatie}.yaml'
+  '/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders':
+    $ref: 'paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders.yaml'
+  '/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders{agbCode}':
+    $ref: 'paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@{agbCode}.yaml'
   '/gemeenten/{gemeentecode}/aanbieders':
     $ref: 'paths/gemeenten@{gemeentecode}@aanbieders.yaml'
   '/gemeenten/{gemeentecode}/aanbieders/{agbCode}':

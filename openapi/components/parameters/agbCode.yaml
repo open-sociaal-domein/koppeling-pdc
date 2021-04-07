@@ -1,0 +1,6 @@
+in: path
+name: agbCode
+description: AGB-code zoals te vinden in het Vektis AGB-register
+required: true
+schema:
+  $ref: ../schemas/agbCode.yaml

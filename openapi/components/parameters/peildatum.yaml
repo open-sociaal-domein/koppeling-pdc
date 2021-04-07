@@ -4,4 +4,4 @@ schema:
   type: string
   format: date
 description: >-
-  Datum waarop de producten actief moeten zijn.
+  Datum waarop de producten actief moeten zijn. Indien datum ontbreekt geldt de timestamp van de bevraging.

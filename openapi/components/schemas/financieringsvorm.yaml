@@ -1,0 +1,5 @@
+type: string
+description: Wijze waarop de zorg gefinancierd wordt
+enum:
+  - zin
+  - pgb

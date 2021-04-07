@@ -1,0 +1,16 @@
+title Initiele vulling PDC
+
+Participant FrontOffice as WIZ
+Participant MO-Platform as PDC
+participant AGB-Register as AGB
+
+note right of WIZ
+Initiele vulling
+end note
+
+WIZ -> PDC: Get all products
+WIZ -> PDC: Get all suppliers
+loop through suppliers
+WIZ -> AGB: get supplier details
+end loop
+WIZ -> PDC: Attach supplier to products

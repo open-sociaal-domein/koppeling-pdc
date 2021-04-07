@@ -1,0 +1,18 @@
+title Verwerk PDC notificatie
+
+Participant FrontOffice as WIZ
+Participant MO-Platform as PDC
+participant AGB-Register as AGB
+
+note right of WIZ
+Handle notification event
+end note
+
+PDC -> WIZ: Receive notification
+WIZ -> PDC: Get (update) product by id
+opt update suppliers
+WIZ -> PDC: get (update) suppliers by product
+loop through suppliers
+WIZ -> AGB: get supplier details
+end loop
+end opt

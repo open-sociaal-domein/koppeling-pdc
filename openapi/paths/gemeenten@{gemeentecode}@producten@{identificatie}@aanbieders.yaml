@@ -1,17 +1,20 @@
 get:
-  summary: Product by productId
+  summary: Alle aanbieders van product by identificatie
   tags:
     - producten
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
+    - $ref: ../components/parameters/productIdentificatie.yaml
     - $ref: ../components/parameters/peildatum.yaml
   responses:
     '200':
-      description: Collectie met productdetails obv een productId
+      description: Collectie met alle aanbieders bij een product obv identificatie
       content:
         application/hal+json:
           schema:
-            $ref: ../components/schemas/productHal.yaml
+            allOf:
+              - $ref: ../components/schemas/aanbiederHal.yaml
+              - $ref: ../components/schemas/actiefPrijsrecordArray.yaml
     '400':
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
     '401':

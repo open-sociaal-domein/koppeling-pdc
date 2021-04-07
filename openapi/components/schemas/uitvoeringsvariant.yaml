@@ -1,0 +1,6 @@
+type: string
+description: varianten door het Zorginstituut Nederland beschreven in het document ‘Handreiking Uitvoeringsvarianten iWmo en iJw’
+enum:
+  - inspanningsgericht
+  - outputgericht
+  - taakgericht
