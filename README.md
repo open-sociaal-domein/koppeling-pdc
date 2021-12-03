@@ -274,3 +274,4 @@ More details inside the `code_samples` folder README.
 
 * Repo created with https://github.com/Redocly/create-openapi-repo
 
+Test
