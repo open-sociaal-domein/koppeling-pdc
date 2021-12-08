@@ -5,7 +5,7 @@ get:
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
     - $ref: ../components/parameters/productIdentificatie.yaml
-    - $ref: ../components/parameters/peildatum.yaml
+    - $ref: ../components/parameters/prijsPeildatum.yaml
   responses:
     '200':
       description: Collectie met alle aanbieders bij een product obv identificatie

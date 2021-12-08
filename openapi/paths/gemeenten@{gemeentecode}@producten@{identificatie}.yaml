@@ -5,7 +5,6 @@ get:
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
     - $ref: ../components/parameters/productIdentificatie.yaml
-    - $ref: ../components/parameters/peildatum.yaml
   responses:
     '200':
       description: Collectie met productdetails obv een identificatie

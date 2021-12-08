@@ -1,0 +1,7 @@
+name: prijspeildatum
+in: query
+schema:
+  type: string
+  format: date
+description: >-
+  Datum waarop de prijs actief moet zijn. Indien datum ontbreekt geldt de timestamp van de bevraging.

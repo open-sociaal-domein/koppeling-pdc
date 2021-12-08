@@ -6,7 +6,7 @@ get:
     - $ref: ../components/parameters/gemeentecode.yaml
     - $ref: ../components/parameters/productIdentificatie.yaml
     - $ref: ../components/parameters/agbCode.yaml
-    - $ref: ../components/parameters/peildatum.yaml
+    - $ref: ../components/parameters/prijsPeildatum.yaml
   responses:
     '200':
       description: Aanbiederdetails voor een product
@@ -15,6 +15,7 @@ get:
           schema:
             allOf:
               - $ref: ../components/schemas/aanbiederHal.yaml
+              - $ref: ../components/schemas/gecontracteerdAanbieder.yaml
               - $ref: ../components/schemas/prijsrecords.yaml
     '400':
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"

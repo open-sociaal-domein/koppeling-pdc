@@ -4,7 +4,6 @@ get:
     - aanbieders
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
-    - $ref: ../components/parameters/peildatum.yaml
   responses:
     '200':
       description: Collectie met alle aanbieders uit de PDC
