@@ -8,10 +8,10 @@ info:
     Zorginstituut hebben enkele leveranciers (Stipter, Solviteers Software) hier
     zelf het initiatief toe genomen.
   license:
-    name: 'European Union Public License, version 1.2 (EUPL-1.2)'
-    url: 'https://eupl.eu/1.2/nl/'
+    name: European Union Public License, version 1.2 (EUPL-1.2)
+    url: https://eupl.eu/1.2/nl/
 paths:
-  '/gemeenten/{gemeentecode}/producten':
+  /gemeenten/{gemeentecode}/producten:
     get:
       summary: Alle producten
       tags:
@@ -42,7 +42,7 @@ paths:
           $ref: '#/components/responses/503'
         default:
           $ref: '#/components/responses/default'
-  '/gemeenten/{gemeentecode}/producten/{identificatie}':
+  /gemeenten/{gemeentecode}/producten/{identificatie}:
     get:
       summary: Product by identificatie
       tags:
@@ -50,7 +50,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/productIdentificatie'
-        - $ref: '#/components/parameters/peildatum'
       responses:
         '200':
           description: Collectie met productdetails obv een identificatie
@@ -72,7 +71,7 @@ paths:
           $ref: '#/components/responses/503'
         default:
           $ref: '#/components/responses/default'
-  '/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders':
+  /gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders:
     get:
       summary: Alle aanbieders van product by identificatie
       tags:
@@ -80,7 +79,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/productIdentificatie'
-        - $ref: '#/components/parameters/peildatum'
+        - $ref: '#/components/parameters/prijsPeildatum'
       responses:
         '200':
           description: Collectie met alle aanbieders bij een product obv identificatie
@@ -104,7 +103,7 @@ paths:
           $ref: '#/components/responses/503'
         default:
           $ref: '#/components/responses/default'
-  '/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders{agbCode}':
+  /gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/{agbCode}:
     get:
       summary: Aanbiederdetails by agbCode van een product
       tags:
@@ -113,7 +112,7 @@ paths:
         - $ref: '#/components/parameters/gemeentecode'
         - $ref: '#/components/parameters/productIdentificatie'
         - $ref: '#/components/parameters/agbCode'
-        - $ref: '#/components/parameters/peildatum'
+        - $ref: '#/components/parameters/prijsPeildatum'
       responses:
         '200':
           description: Aanbiederdetails voor een product
@@ -122,6 +121,7 @@ paths:
               schema:
                 allOf:
                   - $ref: '#/components/schemas/aanbiederHal'
+                  - $ref: '#/components/schemas/gecontracteerdAanbieder'
                   - $ref: '#/components/schemas/prijsrecords'
         '400':
           $ref: '#/components/responses/400'
@@ -137,14 +137,13 @@ paths:
           $ref: '#/components/responses/503'
         default:
           $ref: '#/components/responses/default'
-  '/gemeenten/{gemeentecode}/aanbieders':
+  /gemeenten/{gemeentecode}/aanbieders:
     get:
       summary: Alle aanbieders
       tags:
         - aanbieders
       parameters:
         - $ref: '#/components/parameters/gemeentecode'
-        - $ref: '#/components/parameters/peildatum'
       responses:
         '200':
           description: Collectie met alle aanbieders uit de PDC
@@ -166,7 +165,7 @@ paths:
           $ref: '#/components/responses/503'
         default:
           $ref: '#/components/responses/default'
-  '/gemeenten/{gemeentecode}/aanbieders/{agbCode}':
+  /gemeenten/{gemeentecode}/aanbieders/{agbCode}:
     get:
       summary: Aanbieder by agbCode
       tags:
@@ -213,8 +212,8 @@ components:
     gemeentecode:
       type: string
       title: gemeentecode
-      description: 'De CBS gemeentecode, Er moeten 4 cijfers aanwezig zijn.'
-      pattern: '^[0-9]*$'
+      description: De CBS gemeentecode, Er moeten 4 cijfers aanwezig zijn.
+      pattern: ^[0-9]*$
       maxLength: 4
       minLength: 4
       example: '0216'
@@ -445,7 +444,7 @@ components:
         type:
           type: string
           format: uri
-          example: 'https://www.vng.nl/realisatie/api/validaties/integer'
+          example: https://www.vng.nl/realisatie/api/validaties/integer
         name:
           type: string
           description: Naam van de parameter
@@ -541,6 +540,21 @@ components:
       properties:
         actievePrijs:
           $ref: '#/components/schemas/actiefPrijsrecord'
+    gecontracteerdAanbieder:
+      type: object
+      description: Een aanbieder is gecontracteerd voor dit product in deze periode
+      properties:
+        _links:
+          $ref: '#/components/schemas/halCollectionLinks'
+        startDatum:
+          type: string
+          format: date
+        eindDatum:
+          type: string
+          format: date
+      required:
+        - startDatum
+        - eindDatum
     prijsrecord:
       type: object
       description: Actieve prijs in periode
@@ -592,9 +606,17 @@ components:
           type: string
           format: uri
           description: link to resource
+        startDatum:
+          type: string
+          format: date
+        eindDatum:
+          type: string
+          format: date
       required:
         - productId
         - href
+        - startDatum
+        - eindDatum
   parameters:
     gemeentecode:
       in: path
@@ -611,7 +633,7 @@ components:
         format: date
       description: >-
         Datum waarop de producten actief moeten zijn. Indien datum ontbreekt
-        geldt de timestamp van de bevraging.
+        worden alle producten bevraagd.
     typeWet:
       name: typeWet
       in: query
@@ -631,6 +653,15 @@ components:
       required: true
       schema:
         type: string
+    prijsPeildatum:
+      name: prijspeildatum
+      in: query
+      schema:
+        type: string
+        format: date
+      description: >-
+        Datum waarop de prijs actief moet zijn. Indien datum ontbreekt geldt de
+        timestamp van de bevraging.
     agbCode:
       in: path
       name: agbCode
@@ -670,7 +701,7 @@ components:
               https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde
             code: paramsRequired
             invalid-params:
-              - type: 'https://www.vng.nl/realisatie/api/validaties/integer'
+              - type: https://www.vng.nl/realisatie/api/validaties/integer
                 name: verblijfplaats__huisnummer
                 code: integer
                 reason: Waarde is geen geldige integer.
@@ -711,7 +742,7 @@ components:
               403 Forbidden
             title: U bent niet geautoriseerd voor deze operatie.
             status: 403
-            detail: 'The server understood the request, but is refusing to fulfill it.'
+            detail: The server understood the request, but is refusing to fulfill it.
             instance: >-
               https://datapunt.voorbeeldgemeente.nl/api/v1/resourcenaam?parameter=waarde
             code: autorisation
@@ -770,7 +801,7 @@ components:
             type: >-
               https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#/10.5.4
               503 Service Unavailable
-            title: 'Bronservice {bron} is tijdelijk niet beschikbaar.'
+            title: Bronservice {bron} is tijdelijk niet beschikbaar.
             status: 503
             detail: >-
               The service is currently unable to handle the request due to a
