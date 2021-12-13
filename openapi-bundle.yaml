@@ -88,6 +88,7 @@ paths:
               schema:
                 allOf:
                   - $ref: '#/components/schemas/aanbiederHal'
+                  - $ref: '#/components/schemas/gecontracteerdAanbieder'
                   - $ref: '#/components/schemas/actiefPrijsrecordArray'
         '400':
           $ref: '#/components/responses/400'
@@ -517,6 +518,21 @@ components:
               properties:
                 self:
                   $ref: '#/components/schemas/halLink'
+    gecontracteerdAanbieder:
+      type: object
+      description: Een aanbieder is gecontracteerd voor dit product in deze periode
+      properties:
+        _links:
+          $ref: '#/components/schemas/halCollectionLinks'
+        startDatum:
+          type: string
+          format: date
+        eindDatum:
+          type: string
+          format: date
+      required:
+        - startDatum
+        - eindDatum
     prijs:
       type: number
       description: prijs in centen
@@ -540,21 +556,6 @@ components:
       properties:
         actievePrijs:
           $ref: '#/components/schemas/actiefPrijsrecord'
-    gecontracteerdAanbieder:
-      type: object
-      description: Een aanbieder is gecontracteerd voor dit product in deze periode
-      properties:
-        _links:
-          $ref: '#/components/schemas/halCollectionLinks'
-        startDatum:
-          type: string
-          format: date
-        eindDatum:
-          type: string
-          format: date
-      required:
-        - startDatum
-        - eindDatum
     prijsrecord:
       type: object
       description: Actieve prijs in periode
@@ -606,17 +607,9 @@ components:
           type: string
           format: uri
           description: link to resource
-        startDatum:
-          type: string
-          format: date
-        eindDatum:
-          type: string
-          format: date
       required:
         - productId
         - href
-        - startDatum
-        - eindDatum
   parameters:
     gemeentecode:
       in: path

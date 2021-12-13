@@ -14,6 +14,7 @@ get:
           schema:
             allOf:
               - $ref: ../components/schemas/aanbiederHal.yaml
+              - $ref: ../components/schemas/gecontracteerdAanbieder.yaml
               - $ref: ../components/schemas/actiefPrijsrecordArray.yaml
     '400':
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
