@@ -1,0 +1,8 @@
+allOf:
+  - $ref: ./aanbiederHal.yaml
+  - type: object
+    properties:
+      producten:
+        type: array
+        items:
+          $ref: ./productLinks.yaml

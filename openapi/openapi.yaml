@@ -12,17 +12,17 @@ info:
     url: https://eupl.eu/1.2/nl/
 paths:
   '/gemeenten/{gemeentecode}/producten':
-    $ref: 'paths/gemeenten@{gemeentecode}@producten.yaml'
+    $ref: 'v1/paths/gemeenten@{gemeentecode}@producten.yaml'
   '/gemeenten/{gemeentecode}/producten/{identificatie}':
-    $ref: 'paths/gemeenten@{gemeentecode}@producten@{identificatie}.yaml'
+    $ref: 'v1/paths/gemeenten@{gemeentecode}@producten@{identificatie}.yaml'
   '/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders':
-    $ref: 'paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders.yaml'
+    $ref: 'v1/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders.yaml'
   '/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/{agbCode}':
-    $ref: 'paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@{agbCode}.yaml'
+    $ref: 'v1/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@{agbCode}.yaml'
   '/gemeenten/{gemeentecode}/aanbieders':
-    $ref: 'paths/gemeenten@{gemeentecode}@aanbieders.yaml'
+    $ref: 'v1/paths/gemeenten@{gemeentecode}@aanbieders.yaml'
   '/gemeenten/{gemeentecode}/aanbieders/{agbCode}':
-    $ref: 'paths/gemeenten@{gemeentecode}@aanbieders@{agbCode}.yaml'
+    $ref: 'v1/paths/gemeenten@{gemeentecode}@aanbieders@{agbCode}.yaml'
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme

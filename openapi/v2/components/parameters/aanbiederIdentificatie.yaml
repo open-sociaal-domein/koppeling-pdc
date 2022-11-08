@@ -1,0 +1,7 @@
+in: path
+name: aanbiederidentificatie
+description: sleutel van de aanbieder
+required: true
+schema:
+  type: string
+

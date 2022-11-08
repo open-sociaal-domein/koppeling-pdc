@@ -1,0 +1,7 @@
+in: path
+name: identificatie
+description: unieke sleutel van het product
+required: true
+schema:
+  type: string
+

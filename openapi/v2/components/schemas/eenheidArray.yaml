@@ -1,0 +1,4 @@
+type: array
+items:
+  $ref: ./eenheid.yaml
+description: Valide waarde uit iStandaarden codelijst WJ756

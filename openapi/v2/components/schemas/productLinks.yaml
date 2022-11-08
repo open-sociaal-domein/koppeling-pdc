@@ -1,0 +1,13 @@
+type: object
+description: Object met product link
+properties:
+  productId:
+    type: string
+    description: primary key van product
+  href:
+    type: string
+    format: uri
+    description: link to resource
+required:
+  - productId
+  - href

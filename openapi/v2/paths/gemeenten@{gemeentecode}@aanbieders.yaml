@@ -1,21 +1,16 @@
 get:
-  summary: Alle aanbieders van product by identificatie
+  summary: Alle aanbieders
   tags:
-    - producten
+    - pdc
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
-    - $ref: ../components/parameters/productIdentificatie.yaml
-    - $ref: ../components/parameters/prijsPeildatum.yaml
   responses:
     '200':
-      description: Collectie met alle aanbieders bij een product obv identificatie
+      description: Collectie met alle aanbieders uit de PDC
       content:
         application/hal+json:
           schema:
-            allOf:
-              - $ref: ../components/schemas/aanbiederHal.yaml
-              - $ref: ../components/schemas/gecontracteerdAanbieder.yaml
-              - $ref: ../components/schemas/actiefPrijsrecordArray.yaml
+            $ref: ../components/schemas/aanbiederHalCollectie.yaml
     '400':
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
     '401':

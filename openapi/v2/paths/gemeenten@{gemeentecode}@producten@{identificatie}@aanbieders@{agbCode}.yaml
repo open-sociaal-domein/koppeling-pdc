@@ -1,7 +1,7 @@
 get:
   summary: Aanbiederdetails by agbCode van een product
   tags:
-    - producten
+    - pdc
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
     - $ref: ../components/parameters/productIdentificatie.yaml
@@ -13,10 +13,7 @@ get:
       content:
         application/hal+json:
           schema:
-            allOf:
-              - $ref: ../components/schemas/aanbiederHal.yaml
-              - $ref: ../components/schemas/gecontracteerdAanbieder.yaml
-              - $ref: ../components/schemas/prijsrecords.yaml
+            $ref: ../components/schemas/aanbiederInline.yaml
     '400':
       $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
     '401':

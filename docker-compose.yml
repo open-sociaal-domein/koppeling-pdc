@@ -6,7 +6,7 @@ services:
     ports:
       - 8020:8080
     environment:
-      - SWAGGER_JSON=/oas3/openapi.yaml
+      - SWAGGER_JSON=/oas3/openapi-v2.yaml
     volumes:
       - ./dist/:/oas3
 
@@ -15,7 +15,7 @@ services:
     ports:
       - 8025:80
     environment:
-      - SPEC_URL=openapi.yaml
+      - SPEC_URL=openapi-v2.yaml
     volumes:
       - ./openapi-bundle.yaml:/usr/share/nginx/html/openapi.yaml:ro
 
@@ -27,6 +27,6 @@ services:
   #   ports:
   #     - 8030:8080
   #   environment:
-  #     - SWAGGER_FILE=/tmp/openapi.yaml
+  #     - SWAGGER_FILE=/tmp/openapi-v2.yaml
   #   volumes:
   #     - ./dist:/tmp

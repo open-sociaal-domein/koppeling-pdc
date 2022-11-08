@@ -1,0 +1,7 @@
+name: producttype
+in: path
+required: true
+description: >-
+  Filter de producten op basis van type product
+schema:
+  $ref: ../schemas/typeProduct.yaml

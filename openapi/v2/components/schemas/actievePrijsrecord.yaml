@@ -1,0 +1,14 @@
+type: object
+description: Actieve prijs
+properties:
+  beginGeldigheid:
+    type: string
+    format: date
+  eindeGeldigheid:
+    type: string
+    format: date
+  prijs:
+    $ref: ./prijs.yaml
+required:
+  - prijs
+  - beginGeldigheid

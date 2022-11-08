@@ -1,0 +1,6 @@
+name: typeWet
+in: query
+description: >-
+  Filter de producten op basis van type wet
+schema:
+  $ref: ../schemas/typeWet.yaml

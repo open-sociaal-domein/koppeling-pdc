@@ -1,6 +1,6 @@
 type: object
 properties:
-  prijsrecords:
+  producten:
     type: array
     items:
-      $ref: './prijsrecord.yaml'
+      $ref: ./productHal.yaml

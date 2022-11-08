@@ -1,0 +1,7 @@
+type: string
+enum:
+  - Ja
+  - Nee
+  - Ja, met kostprijs
+  - Ja, met vaste kostprijs
+  - Ja, met beschermd wonen

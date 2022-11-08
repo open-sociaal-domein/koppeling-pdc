@@ -1,0 +1,7 @@
+name: peildatum
+in: query
+schema:
+  type: string
+  format: date
+description: >-
+  Datum waarop de producten actief moeten zijn. Indien datum ontbreekt worden alle producten bevraagd.

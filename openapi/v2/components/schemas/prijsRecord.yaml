@@ -1,0 +1,21 @@
+type: object
+description: Actieve prijs in periode
+properties:
+  beginGeldigheid:
+    type: string
+    format: date
+  eindeGeldigheid:
+    type: string
+    format: date
+  indicatieActievePrijs:
+    type: boolean
+    description: Actieve prijs op basis van de parameter peildatum
+    default: false
+  prijs:
+    $ref: ./prijs.yaml
+  cak:
+    $ref: ./typeCak.yaml
+required:
+  - prijs
+  - beginGeldigheid
+  - indicatieActievePrijs

@@ -1,0 +1,5 @@
+type: string
+minLength: 8
+maxLength: 8
+description: Een geldige agb-code
+example: '20000001'

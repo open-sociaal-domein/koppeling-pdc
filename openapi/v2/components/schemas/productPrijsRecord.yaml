@@ -1,0 +1,6 @@
+type: object
+allOf:
+  - $ref: ./prijsRecord.yaml
+properties:
+  cak:
+    $ref: ./typeCak.yaml
