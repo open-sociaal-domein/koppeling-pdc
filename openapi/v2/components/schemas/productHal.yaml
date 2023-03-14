@@ -37,9 +37,7 @@ properties:
       - $ref: ./toewijzingAspecifiek.yaml
       - $ref: ./toewijzingGeneriek.yaml
   prijsRecords:
-    type: array
-    items:
-      $ref: ./productPrijsRecords.yaml
+    $ref: ./productPrijsRecords.yaml
   maxBudgetRecords:
     type: array
     items:

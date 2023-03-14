@@ -19,10 +19,14 @@ paths:
     $ref: 'v2/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders.yaml'
   '/v2/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/{agbCode}':
     $ref: 'v2/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@{agbCode}.yaml'
+  '/v2/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/aanbiederId/{aanbiederidentificatie}':
+    $ref: 'v2/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@aanbiederId@{aanbiederidentificatie}.yaml'
   '/v2/gemeenten/{gemeentecode}/aanbieders':
     $ref: 'v2/paths/gemeenten@{gemeentecode}@aanbieders.yaml'
   '/v2/gemeenten/{gemeentecode}/aanbieders/{agbCode}':
     $ref: 'v2/paths/gemeenten@{gemeentecode}@aanbieders@{agbCode}.yaml'
+  '/v2/gemeenten/{gemeentecode}/aanbieders/aanbiederId/{aanbiederidentificatie}':
+    $ref: 'v2/paths/gemeenten@{gemeentecode}@aanbieders@aanbiederId@{aanbiederidentificatie}.yaml'
   '/v2/gemeenten/{gemeentecode}/producttype/{producttype}':
     $ref: 'v2/paths/gemeenten@{gemeentecode}@producttype@{producttype}.yaml'
 components:

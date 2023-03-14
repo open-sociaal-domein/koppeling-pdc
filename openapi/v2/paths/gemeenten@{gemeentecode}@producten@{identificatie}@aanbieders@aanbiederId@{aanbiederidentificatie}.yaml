@@ -1,11 +1,11 @@
 get:
-  summary: Aanbiederdetails by agbCode van een product
+  summary: Aanbiederdetails by aanbiederid van een product
   tags:
     - pdc
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
     - $ref: ../components/parameters/productIdentificatie.yaml
-    - $ref: ../components/parameters/aanbiederIdentificatie'.yaml
+    - $ref: ../components/parameters/aanbiederIdentificatie.yaml
     - $ref: ../components/parameters/prijsPeildatum.yaml
   responses:
     '200':

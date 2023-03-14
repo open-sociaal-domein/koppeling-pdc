@@ -1,14 +1,14 @@
 get:
-  summary: Aanbieder by agbCode
+  summary: Aanbieder by aanbiederid
   tags:
     - pdc
   parameters:
     - $ref: ../components/parameters/gemeentecode.yaml
-    - $ref: ../components/parameters/aanbiederIdentificatie'.yaml
+    - $ref: ../components/parameters/aanbiederIdentificatie.yaml
     - $ref: ../components/parameters/peildatum.yaml
   responses:
     '200':
-      description: Collectie van de aanbiederdetails by agbCode
+      description: Collectie van de aanbiederdetails by aanbiederId
       content:
         application/hal+json:
           schema:

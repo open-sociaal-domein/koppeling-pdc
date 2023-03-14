@@ -13,8 +13,6 @@ properties:
     default: false
   prijs:
     $ref: ./prijs.yaml
-  cak:
-    $ref: ./typeCak.yaml
 required:
   - prijs
   - beginGeldigheid
