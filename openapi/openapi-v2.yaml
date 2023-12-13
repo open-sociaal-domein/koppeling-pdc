@@ -17,6 +17,8 @@ paths:
     $ref: 'v2/paths/gemeenten@{gemeentecode}@producten@{identificatie}.yaml'
   '/v2/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders':
     $ref: 'v2/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders.yaml'
+  '/v2/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/alle':
+    $ref: 'v2/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@alle.yaml'
   '/v2/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/{agbCode}':
     $ref: 'v2/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@{agbCode}.yaml'
   '/v2/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/aanbiederId/{aanbiederidentificatie}':
