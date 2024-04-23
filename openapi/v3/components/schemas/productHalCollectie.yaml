@@ -1,0 +1,13 @@
+type: object
+properties:
+  _links:
+    $ref: ./override/halCollectionLinks.yaml
+  _embedded:
+    $ref: ./embeddedProductHal.yaml
+#  _embedded:
+#    type: object
+#    properties:
+#      producten:
+#        type: array
+#        items:
+#          $ref: './embeddedProductHal.yaml'

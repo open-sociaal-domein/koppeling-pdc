@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  version: 3.0.0
+  title: Producten- en Dienstencatalogus (PDC) API
+  description: >-
+    Een open standaard om PDC-synchronisatie tussen applicaties mogelijk te
+    maken Omdat hier geen standaard voor is vanuit VNG-Realisatie of het
+    Zorginstituut hebben enkele leveranciers (Stipter, Solviteers Software) hier
+    zelf het initiatief toe genomen.
+  license:
+    name: European Union Public License, version 1.2 (EUPL-1.2)
+    url: https://eupl.eu/1.2/nl/
+paths:
+  '/v3/gemeenten/{gemeentecode}/producten':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@producten.yaml'
+  '/v3/gemeenten/{gemeentecode}/producten/{identificatie}':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@producten@{identificatie}.yaml'
+  '/v3/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders.yaml'
+  '/v3/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/alle':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@alle.yaml'
+  '/v3/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/{agbCode}':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@{agbCode}.yaml'
+  '/v3/gemeenten/{gemeentecode}/producten/{identificatie}/aanbieders/aanbiederId/{aanbiederidentificatie}':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@producten@{identificatie}@aanbieders@aanbiederId@{aanbiederidentificatie}.yaml'
+  '/v3/gemeenten/{gemeentecode}/aanbieders':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@aanbieders.yaml'
+  '/v3/gemeenten/{gemeentecode}/aanbieders/{agbCode}':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@aanbieders@{agbCode}.yaml'
+  '/v3/gemeenten/{gemeentecode}/aanbieders/aanbiederId/{aanbiederidentificatie}':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@aanbieders@aanbiederId@{aanbiederidentificatie}.yaml'
+  '/v3/gemeenten/{gemeentecode}/producttype/{producttype}':
+    $ref: 'v3/paths/gemeenten@{gemeentecode}@producttype@{producttype}.yaml'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      $ref: ./components/securitySchemes/bearerAuth.yaml
+
+security:
+  - bearerAuth: []

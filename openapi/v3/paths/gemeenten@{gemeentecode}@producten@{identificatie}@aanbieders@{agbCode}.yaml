@@ -1,0 +1,31 @@
+get:
+  summary: Aanbiederdetails by agbCode van een product
+  tags:
+    - pdc
+  parameters:
+    - $ref: ../components/parameters/gemeentecode.yaml
+    - $ref: ../components/parameters/productIdentificatie.yaml
+    - $ref: ../components/parameters/agbCode.yaml
+    - $ref: ../components/parameters/prijsPeildatum.yaml
+  responses:
+    '200':
+      description: Aanbiederdetails voor een product
+      content:
+        application/hal+json:
+          schema:
+            $ref: ../components/schemas/aanbiederInline.yaml
+    '400':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
+    '401':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/401"
+    '403':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/403"
+    '500':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/500"
+    '501':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/501"
+    '503':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/503"
+    'default':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/default"
+

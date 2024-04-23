@@ -1,0 +1,25 @@
+type: object
+description: Een aanbieder die één of meerdere producten uit de PDC mag leveren
+properties:
+  _links:
+    $ref: ./override/halCollectionLinks.yaml
+  identificatie:
+    type: string
+  agbCode:
+    $ref: ./agbCode.yaml
+  naam:
+    type: string
+  kvkNummer:
+    type: string
+    minLength: 8
+    maxLength: 8
+    example: '62633716'
+  vestigingsnummer:
+    type: string
+    minLength: 12
+    maxLength: 12
+    example: '000031624103'
+    nullable: true
+required:
+  - agbCode
+  - naam

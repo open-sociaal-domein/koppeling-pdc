@@ -1,0 +1,6 @@
+in: path
+name: gemeentecode
+description: CBS gemeentecode
+required: true
+schema:
+  $ref: ../schemas/gemeentecode.yaml

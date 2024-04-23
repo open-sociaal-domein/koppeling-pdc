@@ -1,0 +1,6 @@
+in: query
+name: productcategorie
+description: Filter de producten op basis van product categorie
+required: false
+schema:
+  $ref: ../schemas/productCategorie.yaml

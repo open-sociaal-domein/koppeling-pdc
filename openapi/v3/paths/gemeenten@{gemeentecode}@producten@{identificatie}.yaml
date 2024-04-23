@@ -1,0 +1,29 @@
+get:
+  summary: Product by identificatie
+  tags:
+    - pdc
+  parameters:
+    - $ref: ../components/parameters/gemeentecode.yaml
+    - $ref: ../components/parameters/productIdentificatie.yaml
+  responses:
+    '200':
+      description: Collectie met productdetails obv een identificatie
+      content:
+        application/hal+json:
+          schema:
+            $ref: ../components/schemas/productHal.yaml
+    '400':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/400"
+    '401':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/401"
+    '403':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/403"
+    '500':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/500"
+    '501':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/501"
+    '503':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/503"
+    'default':
+      $ref: "https://raw.githubusercontent.com/open-sociaal-domein/generieke-componenten/master/common.yaml#/components/responses/default"
+

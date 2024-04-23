@@ -1,0 +1,8 @@
+type: object
+description: Maximale budget per eenheid
+properties:
+  eenheid:
+    $ref: ./eenheid.yaml
+  hoeveelheid:
+    type: integer
+    description: het maximale budget voor de eenheid

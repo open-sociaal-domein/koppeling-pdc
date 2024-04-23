@@ -1,0 +1,5 @@
+type: string
+description: De productnaam.
+minLength: 3
+maxLength: 100
+example: 'Begeleiding regulier: inspanningsgericht.'

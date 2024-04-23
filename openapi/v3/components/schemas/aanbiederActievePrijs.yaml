@@ -1,0 +1,6 @@
+allOf:
+  - $ref: ./aanbiederHal.yaml
+  - $ref: ./gecontracteerdAanbieder.yaml
+  - properties:
+      actievePrijs:
+        $ref: ./actievePrijsRecord.yaml

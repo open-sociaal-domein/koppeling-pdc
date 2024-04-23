@@ -1,0 +1,11 @@
+type: object
+properties:
+  _links:
+    $ref: ./override/halCollectionLinks.yaml
+  _embedded:
+    type: object
+    properties:
+      aanbieders:
+        type: array
+        items:
+          $ref: ./aanbiederActievePrijs.yaml

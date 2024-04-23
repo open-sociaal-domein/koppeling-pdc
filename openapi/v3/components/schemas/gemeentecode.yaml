@@ -1,0 +1,7 @@
+type: string
+title: gemeentecode
+description: 'De CBS gemeentecode, Er moeten 4 cijfers aanwezig zijn.'
+pattern: '^[0-9]*$'
+maxLength: 4
+minLength: 4
+example: '0216'

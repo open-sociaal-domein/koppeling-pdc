@@ -1,0 +1,6 @@
+in: query
+name: productzoeknaam
+description: Filter de producten op basis van een deel van de productnaam
+required: false
+schema:
+  $ref: ../schemas/productNaam.yaml

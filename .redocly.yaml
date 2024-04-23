@@ -2,6 +2,7 @@
 apiDefinitions:
   main: ./openapi/openapi.yaml
   v2: ./openapi/openapi-v2.yaml
+  v3: ./openapi/openapi-v3.yaml
 lint:
   extends:
     - recommended

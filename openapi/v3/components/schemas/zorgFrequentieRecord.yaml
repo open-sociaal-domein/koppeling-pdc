@@ -1,0 +1,7 @@
+type: object
+description: Zorgfrequentie
+properties:
+  frequentie:
+    $ref: ./frequentie.yaml
+  maxBudget:
+    $ref: ./maxBudgetArray.yaml

@@ -1,0 +1,5 @@
+type: string
+description: Valide waarde uit iStandaarden codelijst WMO020 of JZ020
+minLength: 2
+maxLength: 2
+example: '02'

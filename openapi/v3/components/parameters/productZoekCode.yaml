@@ -1,0 +1,6 @@
+in: query
+name: productzoekcode
+description: Filter de producten op basis van een deel van de productcode
+required: false
+schema:
+  $ref: ../schemas/productCode.yaml

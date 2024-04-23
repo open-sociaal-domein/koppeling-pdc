@@ -1,0 +1,21 @@
+type: object
+description: Toewijzingsvariant specifiek
+properties:
+  productCategorie:
+    $ref: ./productCategorie.yaml
+  productCode:
+    $ref: ./productCode.yaml
+  eenheid:
+    $ref: ./eenheidArray.yaml
+  zorgfrequentie:
+    $ref: ./zorgFrequentieArray.yaml
+  einddatumVerplicht:
+    type: boolean
+    description: Moet de einddatum toewijzing verplicht gevuld worden bij een toewijzing?
+    default: true
+required:
+  - productCategorie
+  - productCode
+  - eenheid
+  - frequentie
+  - einddatumVerplicht
